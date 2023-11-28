@@ -66,7 +66,7 @@ def hola():
 
                 <h2>Endpoints:</h2>
                 <ul>
-                    <li><a href="https://pi-ml-ops-proyecto.onrender.com//PlayTimeGenre/Action">/PlayTimeGenre/Action</a></li>
+                    <li><a href="https://pi-ml-ops-proyecto.onrender.com/PlayTimeGenre/Action">/PlayTimeGenre/Action</a></li>
                     <li><a href="https://pi-ml-ops-proyecto.onrender.com/UserForGenre/Adventure">/UserForGenre/Adventure</a></li>
                     <li><a href="https://pi-ml-ops-proyecto.onrender.com/UsersRecommend/2012">/UsersRecommend/2012</a></li>
                     <li><a href="https://pi-ml-ops-proyecto.onrender.com/recomendacion_juego/10">/recomendacion_juego/10</a></li>
