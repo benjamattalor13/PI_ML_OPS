@@ -1,41 +1,22 @@
-<p align=center><img src=https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png><p>
+<h1 align="center"> Proyecto ML STEAM </h1>
 
-# <h1 align=center> **PROYECTO INDIVIDUAL Nº1** </h1>
+<img src="https://www.trustedreviews.com/wp-content/uploads/sites/54/2023/04/Steam-Logo.jpg" alt="steam" width="500" style="display: block; margin: auto;">
 
-# <h1 align=center>**`Machine Learning Operations (MLOps)`**</h1>
+## Introduccion
 
-<p align="center">
-<img src="https://user-images.githubusercontent.com/67664604/217914153-1eb00e25-ac08-4dfa-aaf8-53c09038f082.png"  height=300>
-</p>
+Bienvenidos a mi proyecto de Machine Learning. Soy Franco Benjamín Mattarollo, estoy cursando la carrera de Data Science en SOYHENRY.
 
-¡Bienvenidos al primer proyecto individual de la etapa de labs! En esta ocasión, deberán hacer un trabajo situándose en el rol de un ***MLOps Engineer***.  
-
-<hr>  
-
-## **Descripción del problema (Contexto y rol a desarrollar)**
-
-## Contexto
-
-Tienes tu modelo de recomendación dando unas buenas métricas :smirk:, y ahora, cómo lo llevas al mundo real? :eyes:
-
-El ciclo de vida de un proyecto de Machine Learning debe contemplar desde el tratamiento y recolección de los datos (Data Engineer stuff) hasta el entrenamiento y mantenimiento del modelo de ML según llegan nuevos datos.
-
+La tarea que se presenta en este proyecto implica la creación de un flujo de trabajo para Machine Learning Operations (MLOps) que abarque fases de Ingeniería de Datos mediante Extraction, Transform and Load (ETL), avance hacia el aprendizaje automático con Exploratory Data Analysis (EDA), abordando la exploración y entrenamiento de modelos, culminando con la implementación tanto del modelo como de los puntos finales (endpoints).
 
 ## Rol a desarrollar
 
-Empezaste a trabajar como **`Data Scientist`** en Steam, una plataforma multinacional de videojuegos. El mundo es bello y vas a crear tu primer modelo de ML que soluciona un problema de negocio: Steam pide que te encargues de crear un sistema de recomendación de videojuegos para usuarios. :worried:
+Empezaste a trabajar como **`Data Scientist`** en Steam, una plataforma multinacional de videojuegos. El mundo es bello y vas a crear tu primer modelo de ML que soluciona un problema de negocio: Steam pide que te encargues de crear un sistema de recomendación de videojuegos para usuarios.
 
-Vas a sus datos y te das cuenta que la madurez de los mismos es poca (ok, es nula :sob: ): Datos anidados, de tipo raw, no hay procesos automatizados para la actualización de nuevos productos, entre otras cosas… haciendo tu trabajo imposible :weary: . 
+Vas a sus datos y te das cuenta que la madurez de los mismos es poca (ok, es nula): Datos anidados, de tipo raw, no hay procesos automatizados para la actualización de nuevos productos, entre otras cosas… haciendo tu trabajo imposible. 
 
-Debes empezar desde 0, haciendo un trabajo rápido de **`Data Engineer`** y tener un **`MVP`** (_Minimum Viable Product_) para el cierre del proyecto! Tu cabeza va a explotar 🤯, pero al menos sabes cual es, conceptualmente, el camino que debes de seguir :exclamation:. Así que espantas los miedos y pones manos a la obra :muscle:
+Debes empezar desde 0, haciendo un trabajo rápido de **`Data Engineer`** y tener un **`MVP`** (_Minimum Viable Product_) para el cierre del proyecto! Tu cabeza va a explotar 🤯, pero al menos sabes cual es, conceptualmente, el camino que debes de seguir. Así que espantas los miedos y pones manos a la obra
 
-<p align="center">
-<img src="https://github.com/HX-PRomero/PI_ML_OPS/raw/main/src/DiagramaConceptualDelFlujoDeProcesos.png"  height=500>
-</p>
-
-<sub> Nota que aquí se reflejan procesos, no herramientas tecnológicas. Haz el ejercicio de entender qué herramienta del stack corresponde a cada parte del proceso<sub/>
-
-## **Propuesta de trabajo (requerimientos de aprobación)**
+## Propuesta del Trabajo
 
 **`Transformaciones`**:  Para este MVP no se te pide transformaciones de datos(` aunque encuentres una motivo para hacerlo `) pero trabajaremos en leer el dataset con el formato correcto. Puedes eliminar las columnas que no necesitan para responder las consultas o preparar los modelos de aprendizaje automático, y de esa manera optimizar el rendimiento de la API y el entrenamiento del modelo.
 
@@ -46,106 +27,142 @@ Debes empezar desde 0, haciendo un trabajo rápido de **`Data Engineer`** y tene
 <sub> Debes crear las siguientes funciones para los endpoints que se consumirán en la API, recuerden que deben tener un decorador por cada una (@app.get(‘/’)).<sub/>
 
 
-+ def **PlayTimeGenre( *`genero` : str* )**:
+```py
+def PlayTimeGenre(genero: str):
+```
     Debe devolver `año` con mas horas jugadas para dicho género.
   
 Ejemplo de retorno: {"Año de lanzamiento con más horas jugadas para Género X" : 2013}
 
-+ def **UserForGenre( *`genero` : str* )**:
+```py
+def UserForGenre(genero: str):
+```
     Debe devolver el usuario que acumula más horas jugadas para el género dado y una lista de la acumulación de horas jugadas por año.
 
 Ejemplo de retorno: {"Usuario con más horas jugadas para Género X" : us213ndjss09sdf,
 			     "Horas jugadas":[{Año: 2013, Horas: 203}, {Año: 2012, Horas: 100}, {Año: 2011, Horas: 23}]}
 
-+ def **UsersRecommend( *`año` : int* )**:
-   Devuelve el top 3 de juegos MÁS recomendados por usuarios para el año dado. (reviews.recommend = True y comentarios positivos/neutrales)
+```py
+def UsersRecommend(año: int):
+```
+    Devuelve el top 3 de juegos MÁS recomendados por usuarios para el año dado. (reviews.recommend = True y comentarios positivos/neutrales)
   
 Ejemplo de retorno: [{"Puesto 1" : X}, {"Puesto 2" : Y},{"Puesto 3" : Z}]
 
-+ def **UsersWorstDeveloper( *`año` : int* )**:
-   Devuelve el top 3 de desarrolladoras con juegos MENOS recomendados por usuarios para el año dado. (reviews.recommend = False y comentarios negativos)
+Sistema de recomendación item-item:
+    ```py
+    def recomendacion_juego( id de producto ):
+    ```
+        Ingresando el id de producto, deberíamos recibir una lista con 5 juegos recomendados similares al ingresado.
+
+
+## Objetivos del Proyecto
+Nuestra meta principal consiste en desarrollar y lanzar un sistema de recomendación de juegos, incorporando endpoints accesibles online capaces de satisfacer las funciones solicitadas. Para lograr esto, nos enfocaremos en alcanzar los siguientes hitos específicos:
+
+1. Procesamiento de Datos y Análisis Exploratorio:
+
+    - Implementaremos técnicas de Extracción, Transformación y Carga (ETL) para optimizar la utilización de conjuntos de datos.
+    - Realizaremos un análisis exploratorio de datos (EDA) para obtener insights valiosos.
+
+2. Diseño e Implementación de API:
+
+    - Desarrollaremos una API que estará disponible online para abordar las necesidades previamente identificadas.
+
+3. Modelo de Machine Learning para Recomendaciones:
+
+    - Crearemos un modelo de aprendizaje automático que pronosticará recomendaciones de juegos.
+    - Al proporcionar el ID del ítem deseado, la API devolverá una lista con los 5 juegos recomendados según el género del juego seleccionado.
+
+4. Despliegue de la API en Producción:
+
+    - Implementaremos la API en un entorno de producción para garantizar su accesibilidad general.
+    - Aplicaremos las mejores prácticas para asegurar un rendimiento óptimo y una experiencia de usuario fluida.
+
+5. MLOps: Gestión Eficiente del Proyecto:
+
+    - Estableceremos una infraestructura de MLOps para facilitar de manera eficiente todas las fases del proyecto, desde la transformación de datos hasta el despliegue.
+    - Comprometidos con una operación sin contratiempos, buscaremos garantizar la eficiencia en todas las etapas del emocionante proyecto.
+
+## Ámbito de Proyecto
+
+- Procesamiento y exploración de datos de la base:
+
+    [Análisis y limpieza de datos](ETL.ipynb)
   
-Ejemplo de retorno: [{"Puesto 1" : X}, {"Puesto 2" : Y},{"Puesto 3" : Z}]
+    [Consultas y extracción de datos](2_Consultas.ipynb)
 
-+ def **sentiment_analysis( *`empresa desarrolladora` : str* )**:
-    Según la empresa desarrolladora, se devuelve un diccionario con el nombre de la desarrolladora como llave y una lista con la cantidad total 
-    de registros de reseñas de usuarios que se encuentren categorizados con un análisis de sentimiento como valor. 
+- Construcción del modelo de aprendizaje:
 
-Ejemplo de retorno: {'Valve' : [Negative = 182, Neutral = 120, Positive = 278]}
+    [Modelo de Machine Learning basado en items](3_Modelo_ML.ipynb)
 
-<br/>
+- Desarrollo de funciones y API's:
 
-
-> `Importante`<br>
-El MVP _tiene_ que ser una API que pueda ser consumida segun los criterios de [API REST o RESTful](https://rockcontent.com/es/blog/api-rest/) desde cualquier dispositivo conectado a internet. Algunas herramientas como por ejemplo, Streamlit, si bien pueden brindar una interfaz de consulta, no cumplen con las condiciones para ser consideradas una API, sin workarounds.
-
-
-**`Deployment`**: Conoces sobre [Render](https://render.com/docs/free#free-web-services) y tienes un [tutorial de Render](https://github.com/HX-FNegrete/render-fastapi-tutorial) que te hace la vida mas fácil :smile: . También podrías usar [Railway](https://railway.app/), o cualquier otro servicio que permita que la API pueda ser consumida desde la web.
-
-<br/>
-
-**`Análisis exploratorio de los datos`**: _(Exploratory Data Analysis-EDA)_
-
-Ya los datos están limpios, ahora es tiempo de investigar las relaciones que hay entre las variables del dataset, ver si hay outliers o anomalías (que no tienen que ser errores necesariamente :eyes: ), y ver si hay algún patrón interesante que valga la pena explorar en un análisis posterior. Las nubes de palabras dan una buena idea de cuáles palabras son más frecuentes en los títulos, ¡podría ayudar al sistema de predicción! En esta ocasión vamos a pedirte que no uses librerías para hacer EDA automático ya que queremos que pongas en práctica los conceptos y tareas involucrados en el mismo. Puedes leer un poco más sobre EDA en [este articulo](https://medium.com/swlh/introduction-to-exploratory-data-analysis-eda-d83424e47151)
-
-**`Modelo de aprendizaje automático`**: 
-
-Una vez que toda la data es consumible por la API, está lista para consumir por los departamentos de Analytics y Machine Learning, y nuestro EDA nos permite entender bien los datos a los que tenemos acceso, es hora de entrenar nuestro modelo de machine learning para armar un **sistema de recomendación**. Para ello, te ofrecen dos propuestas de trabajo: En la primera, el modelo deberá tener una relación ítem-ítem, esto es se toma un item, en base a que tan similar esa ese ítem al resto, se recomiendan similares. Aquí el input es un juego y el output es una lista de juegos recomendados, para ello recomendamos aplicar la *similitud del coseno*. 
-La otra propuesta para el sistema de recomendación debe aplicar el filtro user-item, esto es tomar un usuario, se encuentran usuarios similares y se recomiendan ítems que a esos usuarios similares les gustaron. En este caso el input es un usuario y el output es una lista de juegos que se le recomienda a ese usuario, en general se explican como “A usuarios que son similares a tí también les gustó…”. 
-Deben crear al menos **uno** de los dos sistemas de recomendación (Si se atreven a tomar el desafío, para mostrar su capacidad al equipo, ¡pueden hacer ambos!). Tu líder pide que el modelo derive obligatoriamente en un GET/POST en la API símil al siguiente formato:
-
-Si es un sistema de recomendación item-item:
-+ def **recomendacion_juego( *`id de producto`* )**:
-    Ingresando el id de producto, deberíamos recibir una lista con 5 juegos recomendados similares al ingresado.
-
-Si es un sistema de recomendación user-item:
-+ def **recomendacion_usuario( *`id de usuario`* )**:
-    Ingresando el id de un usuario, deberíamos recibir una lista con 5 juegos recomendados para dicho usuario.
-
-
-**`Video`**: Necesitas que al equipo le quede claro que tus herramientas funcionan realmente! Haces un video mostrando el resultado de las consultas propuestas y de tu modelo de ML entrenado! Recuerda presentarte, contar muy brevemente de que trata el proyecto y lo que vas a estar mostrando en el video.
-Para grabarlo, puedes usar la herramienta Zoom, haciendo una videollamada y grabando la pantalla, aunque seguramente buscando, encuentres muchas formas más. 😉
-
-<sub> **Spoiler**: El video NO DEBE durar mas de ***7 minutos*** y DEBE mostrar las consultas requeridas en funcionamiento desde la API y una breve explicación del modelo utilizado para el sistema de recomendación. En caso de que te sobre tiempo luego de grabarlo, puedes mostrar/explicar tu EDA, ETL e incluso cómo desarrollaste la API. <sub/>
-
-<br/>
-
-## **Criterios de evaluación y Rúbrica de Corrección**
-
-**`Código`**: Prolijidad de código, uso de clases y/o funciones, en caso de ser necesario, código comentado. Se tendrá en cuenta el trato de los valores str como `COUNter-strike` / `COUNTER-STRIKE` / `counter-strike`.
-
-**`Repositorio`**: Nombres de archivo adecuados, uso de carpetas para ordenar los archivos, README.md presentando el proyecto y el trabajo realizado. Recuerda que este último corresponde a la guía de tu proyecto, no importa que tan corto/largo sea siempre y cuando tu 'yo' + 1.5 AÑOS pueda entenderlo con facilidad. 
-
-**`Cumplimiento`** de los requerimientos de aprobación indicados en el apartado `Propuesta de trabajo`
-
-NOTA: Recuerde entregar el link de acceso al video. Puede alojarse en YouTube, Drive o cualquier plataforma de almacenamiento. **Verificar que sea de acceso público, recomendamos usar modo incógnito en tu navegador para confirmarlo**.
-
-<br/>
-Aquí te sintetizamos que es lo que consideramos un MVP aprobatorio, y la diferencia con un producto completo.
-
-
-
-<p align="center">
-<img src="https://github.com/HX-PRomero/PI_ML_OPS/raw/main/src/MVP_MLops.PNG"  height=250>
-</p>
-
-Acá van a poder encontrar una rúbrica, donde se específican los criterios de corrección utilizados:
-- https://docs.google.com/spreadsheets/d/e/2PACX-1vR459kVWPsFGSBy6Hhzibp6hRVyvzSFUA0ta_v_FcMgNQnE84Kbt9XKIWLDPlJTqg/pubhtml?gid=1246267749&single=true 
-
-
-## **Fuente de datos**
-
-+ [Dataset](https://drive.google.com/drive/folders/1HqBG2-sUkz_R3h1dZU5F2uAzpRn7BSpj): Carpeta con el archivo que requieren ser procesados, tengan en cuenta que hay datos que estan anidados (un diccionario o una lista como valores en la fila).
-+ [Diccionario de datos](https://docs.google.com/spreadsheets/d/1-t9HLzLHIGXvliq56UE_gMaWBVTPfrlTf2D9uAtLGrk/edit?usp=drive_link): Diccionario con algunas descripciones de las columnas disponibles en el dataset.
-<br/>
-
-## **Material de apoyo**
-
-En este mismo repositorio podrás encontrar algunos (hay repositorios con distintos sistemas de recomendación) [links de ayuda](https://github.com/HX-PRomero/PI_ML_OPS/raw/main/Material%20de%20apoyo.md). Recuerda que no son los unicos recursos que puedes utilizar!
-
-## **FAQ PI MLOps**
-Les acercamos un notion donde tienen respuestas a algunas preguntas básicas de la etapa:
-- https://soyhenry-data-labs.notion.site/PIMLops-FAQs-c7ca60c781e9468b8da4bd437c93412d 
-
+    [Testeo de las funciones](funciones.ipynb)
   
-<br/>
+    [Funciones para la API](functions_c.py)
+  
+    [Main de las funciones](main.py)
+  
+    [Requisitos](requisitos.txt)
+  
+- Aviso:
+
+    Para poder ejecutar el primer archivo que carga los JSON, los transforma y crea los datasets limpios (ETL.ipynb) hay que descargar los JSON que contienen la información en bruto del proyecto y colocarlos dentro de la carpeta del proyecto.
+  
+    Enlace para descarga de los archivos JSON
+
+    https://drive.google.com/drive/folders/18AG7OgUgbPTpkyRpFgZ9qs2LHiRdkIM1?usp=sharing
+
+## Pasos realizados para el proyecto
+
+- ETL (Extract, Transform, Load) y EDA (Exploratory Data Analysis)
+
+    Esta etapa del proyecto consistió en las siguientes tareas:
+
+    Extracción de Datos (Extract): Se obtuvieron los datos que nos facilitaron en Formato JSON. Son 3 bases con información de los juegos de Steam, Reviews y datos de usuarios.
+
+    Transformación de Datos (Transform): Los datos fueron procesados y transformados para asegurar la coherencia y la integridad. Esto implicó la limpieza de datos, la estandarización de formatos, tipos de datos y la manipulación de variables para prepararlos para el análisis.
+
+    Carga de Datos (Load): Los datos transformados fueron cargados en el entorno de trabajo,en formato .csv y cargados en github, para facilitar su acceso y análisis posterior.
+
+    Análisis Exploratorio de Datos (EDA): Se realizó un análisis exploratorio para comprender mejor la naturaleza de los datos. Esto implicó la visualización de patrones, la identificación de tendencias y la detección de posibles relaciones entre variables clave.
+
+- Machine Learning:
+
+    Esta etapa del proyecto incluyó los siguientes pasos:
+
+    Selección de Modelos: Se escogió el modelo de machine learning de relacion item-item, y se analizaron las bases propuestas para generear una solucion específica.
+
+    Entrenamiento del Modelo: Los modelos escogidos fueron entrenados utilizando los datos previamente procesados durante la etapa ETL. Se realizaron ajustes y optimizaciones para mejorar el rendimiento del modelo.
+
+    Validación del Modelo: Se realizaron pruebas y validaciones cruzadas para evaluar la precisión y la generalización del modelo en conjuntos de datos independientes.
+
+    Optimización del Modelo: Se realizaron ajustes adicionales para optimizar el modelo.
+
+- Deployment y API:
+
+    Montaje de la API (Local): Se implementó un entorno virtual para permitir la interacción con el modelo de machine learning y las consultas antes pedidas.
+
+    Despliegue en Render (Deploy-Render): Se procedió al despliegue de la API en un entorno de producción utilizando las plataformas Render y github en la nube. Esto permitió que la funcionalidad estuviera disponible de manera accesible para usuarios finales.
+
+    Monitoreo y Mantenimiento: Se probaron tanto el modelo como los endpoints para chequear su rendimiento y velocidad de respuesta en tiempo real de la API desplegada.
+
+## Video
+
+
+
+## Agradecimiento
+
+Quiero agradecer a mi compañero de cohorte que me ayudo en desarrollar mi primer proyecto
+
+Quiero agradecer a los que me ayudaron durante toda esta carrera a aprender y a progresar
+
+Valoro enormemente el trabajo en equipo y la cooperación que mostraron en cada momento. Este logro es el resultado de la participación y la contribución de cada uno de ustedes.
+
+Estoy muy agradecido de haber formado parte de este grupo tan profesional y entusiasta. Espero que sigamos trabajando juntos y compartiendo nuevos éxitos en nuestro camino académico y laboral.
+
+Muchas gracias por su ayuda
+
+| Francisco Rombini | Johanna Rangel | Juan Ochoa |
+| --- | --- | --- |
+| [<img src="https://avatars.githubusercontent.com/Frombini" width=75><br><sub>Francisco Rombini</sub>](https://github.com/Frombini) | [<img src="https://avatars.githubusercontent.com/JohannaRangel" width=75><br><sub>Johanna Rangel</sub>](https://github.com/JohannaRangel) | [<img src="https://avatars.githubusercontent.com/u/121000341?v=4" width=75><br><sub>Juan Ochoa</sub>](https://github.com/Juangabi8a) |
