@@ -104,6 +104,13 @@ Nuestra meta principal consiste en desarrollar y lanzar un sistema de recomendac
     [Main de las funciones](main.py)
   
     [Requisitos](requisitos.txt)
+  
+
+    Para poder ejecutar el primer archivo que carga los JSON, los transforma y crea los datasets limpios (ETL.ipynb) hay que descargar los JSON que contienen la información en bruto del proyecto y colocarlos dentro de la carpeta del proyecto.
+  
+    Enlace para descarga de los archivos JSON
+
+    https://drive.google.com/drive/folders/17WXp9WirTzoV3fxmvZizTHtEqh02yoV_?usp=sharing
 
 ## Pasos realizados para el proyecto
 
@@ -141,7 +148,8 @@ Nuestra meta principal consiste en desarrollar y lanzar un sistema de recomendac
 
 ## Video
 
-
+Aqui explico mi proyecto en el video:
+https://youtu.be/Ps8Kd2PD2ls
 
 ## Agradecimiento
 
