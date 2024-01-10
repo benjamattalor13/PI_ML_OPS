@@ -23,19 +23,16 @@ def PlayTimeGenre(genero: str):
     consulta1 = consulta1.drop('genres', axis=1)
     consulta1 = consulta1.rename(columns={'aco_genres': 'genres'})
     genero = genero.capitalize()
-    # Filtrar el DataFrame para el género específico
+
     filtered_df = consulta1[consulta1['genres'] == genero]
 
     if filtered_df.empty:
         return {"Género no encontrado en el conjunto de datos"}
 
-    # Agrupar por año de lanzamiento y sumar las horas jugadas
     grouped_df = filtered_df.groupby('release_date')['playtime_forever'].sum()
 
-    # Encontrar el año con más horas jugadas
     max_year = grouped_df.idxmax()
 
-    # Devolver el resultado como un diccionario
     result = {"Año de lanzamiento con más horas jugadas para {}:".format(genero): max_year}
 
     return result
@@ -87,10 +84,7 @@ def UsersRecommend(año: int):
     if año < consulta3['year_posted'].min() or año > consulta3['year_posted'].max():
         return {"Año no encontrado en el conjunto de datos"}
     
-    # Filtrar por año dicho y reseñas positivas y neutrales
     filtered_reviews = consulta3[(consulta3['year_posted'] == año)]
-    
-    # Obtener el top 3 de juegos más recomendados
     top3_games = filtered_reviews.nlargest(3, 'total_sentiment_analysis')[['tags', 'total_sentiment_analysis']]
     
     # Crear el formato de retorno
@@ -98,11 +92,45 @@ def UsersRecommend(año: int):
 
     return result
 
+def UsersWorstDeveloper(anio:int):
+    consulta4 = pd.read_csv('consulta4.csv')
+    if type(anio) != int:
+        return {"Debes colocar el año en entero, EJ:2015"}
+    if anio < consulta4['year_posted'].min() or anio > consulta4['year_posted'].max():
+        return {"Año no encontrado en el conjunto de datos"}
+
+    filtered_df = consulta4[consulta4['year_posted'] == anio]
+
+    top_worst = filtered_df.groupby('developer')['sentiment_analysis'].sum().nlargest(3).reset_index()
+
+    result = [{"Puesto {}: {}".format(i + 1, row['developer'])} for i, row in top_worst.iterrows()]
+
+    return result
+
+def sentiment_analysis(develop:str):
+    consulta5 = pd.read_csv('consulta5.csv')
+    def juntar_palabras(genres):
+        palabras = genres.split(', ')
+        palabras_juntas = ''.join(palabra.replace(' ', '') for palabra in palabras)
+        return palabras_juntas.capitalize()
+
+    consulta5['developer'] = consulta5['developer'].apply(juntar_palabras)
+
+    develop = develop.capitalize()
+    if type(develop) != str:
+        return "Debes colocar un desarrollador de tipo str, EJ:'Valve'"
+    if len(develop) == 0:
+        return "Debes poner un desarrolador en tipo String"
+    filtered_df = consulta5[consulta5['developer'] == develop]
+    sentiment_counts = filtered_df['sentiment_analysis'].value_counts()
+    result = {develop: f"[Negative = {sentiment_counts.get(0, 0)}, Neutral = {sentiment_counts.get(1, 0)}, Positive = {sentiment_counts.get(2, 0)}]"}
+    return result
+
 def recomendacion_juego(id_juego:int):
     modelo_df = pd.read_csv('consulta6.csv')
-    if id_juego not in modelo_df["ItemId"].values:
+    if id_juego not in modelo_df["item_id"].values:
         return "El id ingresado no existe en el dataset"
-    # Buscar el índice del juego con la id
+
     indice_juego = modelo_df[modelo_df["ItemId"] == id_juego].index[0]
 
     recomendaciones = modelo_df.iloc[indice_juego]["recomendaciones_top_5"]

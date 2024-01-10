@@ -3,11 +3,12 @@ import pandas as pd
 import json
 import numpy as np
 from fastapi.responses import JSONResponse, HTMLResponse
-from functions_c import PlayTimeGenre
-from functions_c import UserForGenre
-from functions_c import UsersRecommend
-from functions_c import recomendacion_juego
-
+from funciones import PlayTimeGenre
+from funciones import UserForGenre
+from funciones import UsersRecommend
+from funciones import UsersWorstDeveloper
+from funciones import sentiment_analysis
+from funciones import recomendacion_juego
 app = FastAPI()
 
 @app.get('/', response_class=HTMLResponse)
@@ -100,6 +101,24 @@ async def users_recommend(anio:int):
 
     result = UsersRecommend(anio_int)
     return result
+
+@app.get("/UsersWorstDeveloper/{anio}")
+async def users_worst_developer(anio:int):
+    try:
+        anio_int = int(anio)
+    except ValueError:
+        return {"detail": [{"type": "invalid_input", "msg": "El año debe ser un número entero"}]}
+
+    result = UsersWorstDeveloper(anio_int)
+    return result
+
+@app.get("/sentiment_analysis/{desarrolladora}")
+async def sentiment_analysis_route(desarrolladora:str):
+    try:
+        resultado = sentiment_analysis(desarrolladora)
+        return resultado
+    except Exception as e:
+        return {"error": str(e)}
 
 @app.get("/recomendacion_juego/{id_juego}")
 async def recomendacion_juego_route(id_juego:int):
