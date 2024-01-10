@@ -3,12 +3,12 @@ import pandas as pd
 import json
 import numpy as np
 from fastapi.responses import JSONResponse, HTMLResponse
-from funciones import PlayTimeGenre
-from funciones import UserForGenre
-from funciones import UsersRecommend
-from funciones import UsersWorstDeveloper
-from funciones import sentiment_analysis
-from funciones import recomendacion_juego
+from functions_c import PlayTimeGenre
+from functions_c import UserForGenre
+from functions_c import UsersRecommend
+from functions_c import UsersWorstDeveloper
+from functions_c import sentiment_analysis
+from functions_c import recomendacion_juego
 app = FastAPI()
 
 @app.get('/', response_class=HTMLResponse)
