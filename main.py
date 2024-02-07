@@ -70,6 +70,8 @@ def hola():
                     <li><a href="https://pi-ml-ops-proyecto.onrender.com/PlayTimeGenre/Action">/PlayTimeGenre/Action</a></li>
                     <li><a href="https://pi-ml-ops-proyecto.onrender.com/UserForGenre/Adventure">/UserForGenre/Adventure</a></li>
                     <li><a href="https://pi-ml-ops-proyecto.onrender.com/UsersRecommend/2012">/UsersRecommend/2012</a></li>
+                    <li><a href="https://pi-ml-ops-proyecto.onrender.com/UsersWorstDeveloper/2012">/UsersWorstDeveloper/2012</a></li>
+                    <li><a href="https://pi-ml-ops-proyecto.onrender.com/sentiment_analysis/Valve">/sentiment_analysis/Valve</a></li>
                     <li><a href="https://pi-ml-ops-proyecto.onrender.com/recomendacion_juego/10">/recomendacion_juego/10</a></li>
                 </ul>
             </body>
