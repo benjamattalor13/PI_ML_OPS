@@ -77,14 +77,14 @@ def UserForGenre(genero: str):
 
     return result
 
-def UsersRecommend(año: int):
+def UsersRecommend(anio: int):
     consulta3 = pd.read_csv('consulta3.csv')
-    if type(año) != int:
+    if type(anio) != int:
         return {"Debes colocar el año en entero, EJ:2015"}
-    if año < consulta3['year_posted'].min() or año > consulta3['year_posted'].max():
+    if anio < consulta3['year_posted'].min() or anio > consulta3['year_posted'].max():
         return {"Año no encontrado en el conjunto de datos"}
     
-    filtered_reviews = consulta3[(consulta3['year_posted'] == año)]
+    filtered_reviews = consulta3[(consulta3['year_posted'] == anio)]
     top3_games = filtered_reviews.nlargest(3, 'total_sentiment_analysis')[['tags', 'total_sentiment_analysis']]
     
     # Crear el formato de retorno
